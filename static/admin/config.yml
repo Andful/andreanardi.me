@@ -1,0 +1,95 @@
+#local_backend: true
+
+backend:
+  name: proxy
+  repo: Andful/myblog2
+  proxy_url: http://localhost:8081/api/v1
+  branch:	editing
+
+  commit_messages:
+    create: Create {{collection}} "{{path}}"
+    update: Update {{collection}} "{{path}}"
+    delete: Delete {{collection}} "{{path}}"
+    uploadMedia: Upload "{{path}}"
+    deleteMedia: Delete "{{path}}"
+    openAuthoring: "{{message}}"
+
+media_folder: "static/img"
+
+collections:
+  - label: "Posts"
+    name: "posts"
+    label_singular: "Posts"
+    folder: "content/posts"
+    media_folder: "/assets/media/{{year}}-{{month}}-{{day}}-{{slug}}"
+    #https://github.com/decaporg/decap-cms/pull/2958
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+
+      - label: Slug
+        name: slug
+        widget: string
+
+      - label: Description
+        name: description
+        widget: string
+        required: false
+
+      - label: Date
+        name: date
+        widget: datetime
+        default: "{{now}}"
+      
+      - label: Author
+        name: author
+        widget: string
+        default: "Me"
+
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        choose_url: true
+      
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: true
+      
+      - label: Show ToC
+        name: showToc
+        widget: boolean
+        default: true
+
+      - label: Use Hugo Toc
+        name: UseHugoToc
+        widget: boolean
+        default: true
+
+      - label: Body
+        name: body
+        widget: markdown
+        required: false
+
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - label: Title
+            name: title
+            widget: string
+
+          - label: Description
+            name: description
+            widget: string
+
+          - label: Date
+            name: date
+            widget: datetime
+            default: "{{now}}"

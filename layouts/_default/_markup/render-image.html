@@ -1,0 +1,16 @@
+{{ $page := .Page }}
+{{ $number := add .Ordinal 1}}
+{{ $id := .Attributes.id}}
+
+{{ with $id }}
+  {{ $page.Store.Set (printf "ref-id-%s" .) (dict "type" "Figure" "number" $number) }}
+{{ end }}
+
+{{ $src := .Destination }}
+{{ $caption := .Text }}
+<figure {{- with $id }} id="{{.}}" {{ end -}}>
+    {{ partial "img.html" (dict "Page" $page "src" $src ) }}
+    <figcaption>
+        <p>Figure {{ $number -}}. {{ $caption -}}.</p>
+    </figcaption>
+</figure>

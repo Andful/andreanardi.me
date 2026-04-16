@@ -1,0 +1,15 @@
+{{- $number := add .Ordinal 1 -}}
+{{- $page := .Page -}}
+{{- $id := .Get "id" -}}
+{{- $data := false -}}
+
+{{- with $id -}}
+  {{- $data = $page.Store.Get (printf "ref-id-%s" . ) -}}
+{{- end -}}
+
+
+{{- with $data -}}
+  <a href="#{{- $id -}}">{{- .type }} {{ .number -}}</a>
+{{- else -}}
+  <span style="color:red;">Undefined "{{- $id -}}"</span>
+{{- end -}}

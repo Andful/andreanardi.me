@@ -1,0 +1,32 @@
+{{- $image_file := slicestr (.src) (len "/assets/") -}}
+{{- $image := resources.Get $image_file -}}
+{{- $imgSrc := "" -}}
+{{- $imgSrcSet := slice -}}
+{{- $imgSizes := slice -}}
+{{- with $widths := site.Params.imageSizes -}}
+    {{- if $image -}}
+        {{- range $widths -}}
+            {{- $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink -}}
+            {{- if eq $imgSrc "" -}}
+                {{- $imgSrc = $srcUrl -}}
+            {{- end -}}
+            {{- $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) -}}
+            {{- $imgSizes = $imgSizes | append (printf "(max-width: %dpx) %dw" . .) -}}
+        {{- end -}}
+        {{- $imgSrcSet = (delimit $imgSrcSet ",") -}}
+        {{- $imgSizes = (delimit $imgSizes ",") -}}
+    {{- end -}}
+{{- end -}}
+
+{{- if $image -}}
+    <img
+        src="{{ $image.RelPermalink }}"
+        {{ with .alt }} alt="{{ . }}" {{ end }}
+        decoding="async"
+        fetchpriority="high"
+        srcset="{{ $imgSrcSet }}"
+        sizes="{{ $imgSizes }}"
+    />
+{{- else -}}
+    <img src="/img/file-circle-xmark-solid.svg" width="128px"/>
+{{- end -}}
