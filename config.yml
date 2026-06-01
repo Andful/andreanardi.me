@@ -92,7 +92,7 @@ params:
         url: tags
 
   homeInfoParams:
-    Title: "Andrea Nardi-Dei"
+    Title: "Andrea Nardi"
     Content: >
       Embedded Software Engineer
 
