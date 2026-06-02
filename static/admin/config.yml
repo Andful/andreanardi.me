@@ -47,7 +47,7 @@ collections:
       - label: Author
         name: author
         widget: string
-        default: "Me"
+        default: "Andrea Nardi"
 
       - label: "Featured Image"
         name: "thumbnail"
