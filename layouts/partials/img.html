@@ -1,12 +1,19 @@
-{{- $image_file := slicestr (.src) (len "/assets/") -}}
-{{- $image := resources.Get $image_file -}}
+{{- $imageFile := slicestr (.src) (len "/assets/") -}}
+{{- $aspectRatio := .aspectRatio -}}
+{{- $image := resources.Get $imageFile -}}
 {{- $imgSrc := "" -}}
 {{- $imgSrcSet := slice -}}
 {{- $imgSizes := slice -}}
 {{- with $widths := site.Params.imageSizes -}}
     {{- if $image -}}
         {{- range $widths -}}
-            {{- $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink -}}
+            {{- $width := . -}}
+            {{- $srcUrl := false -}}
+            {{- if $aspectRatio -}}
+                {{- $srcUrl = (printf "%dx%d Center" $width ((mul $width $aspectRatio) | math.Round | cast.ToInt) | $image.Fill).RelPermalink -}}
+            {{- else -}}
+                {{- $srcUrl = (printf "%dx" $width | $image.Resize).RelPermalink -}}
+            {{- end -}}
             {{- if eq $imgSrc "" -}}
                 {{- $imgSrc = $srcUrl -}}
             {{- end -}}

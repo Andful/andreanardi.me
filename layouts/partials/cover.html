@@ -1,0 +1,7 @@
+{{- with .cxt}} {{/* Apply proper context from dict */}}
+{{- if .Params.thumbnail }}
+<figure class="entry-cover">
+    {{ partial "img.html" (dict "src" .Params.thumbnail "aspectRatio" 0.33 ) }}
+</figure>
+{{- end }}{{/* End image */}}
+{{- end -}}{{/* End context */ -}}

@@ -9,7 +9,7 @@
 {{ $src := .Destination }}
 {{ $caption := .Text }}
 <figure {{- with $id }} id="{{.}}" {{ end -}}>
-    {{ partial "img.html" (dict "Page" $page "src" $src ) }}
+    {{ partial "img.html" (dict "src" $src ) }}
     <figcaption>
         <p>Figure {{ $number -}}. {{ $caption -}}.</p>
     </figcaption>
