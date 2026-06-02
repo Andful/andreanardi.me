@@ -6,7 +6,7 @@ description: The KV260 dev board is one of the cheepest FPGA dev board for the
   post, I describe, somewhat of a satirical hack, to alleviate the
   user-unfriendliness of the board.
 date: 2026-05-07T22:49:00.000+02:00
-author: Me
+author: Andrea Nardi
 thumbnail: /assets/media/2026-05-07-adding-an-external-clock-to-the-kv260-dev-board/installation.jpeg
 draft: false
 showToc: true
