@@ -58,8 +58,8 @@ params:
   imageSizes: [300, 600, 900, 1200, 1500]
 
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
-  author: Theme PaperMod
+  description: "Andrea Nardi - Embedded Software Engineer"
+  author: Andrea Nardi
   # author: ["Me", "You"] # multiple authors
 
   defaultTheme: dark
@@ -76,7 +76,7 @@ params:
   ShowPageNums: true
   ShowToc: true
   comments: true
-  images: ["images/papermod-cover.png"]
+  images: []
 
   profileMode:
     enabled: false
@@ -105,7 +105,7 @@ params:
       url: "https://scholar.google.com/citations?user=KAC42PcAAAAJ"
 
   editPost:
-    URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
+    URL: "https://github.com/Andful/andreanardi.me/tree/master/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
